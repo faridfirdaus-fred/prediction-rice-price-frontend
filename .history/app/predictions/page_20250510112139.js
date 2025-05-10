@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import PriceChart from "@/app/components/price-chart";
 import PriceCard from "@/app/components/price-card";
-import PredictionForm from "../components/prediction-form";
 
 const PredictionsPage = () => {
   const [predictions, setPredictions] = useState(null);
