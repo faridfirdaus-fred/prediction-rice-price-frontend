@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import PriceCard from "./price-card";
 import PriceChart from "./price-chart";
@@ -26,50 +27,63 @@ const PredictionResults = ({ data }) => {
 
   const monthName = monthNames[month - 1];
 
-  // Prepare chart data
-  const chartData = [
-    {
-      name: "Previous",
-      premium: predictions.premium?.previous_price || 0,
-      medium: predictions.medium?.previous_price || 0,
-      low_quality: predictions.low_quality?.previous_price || 0,
+  // Animation variants
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
     },
-    {
-      name: "Predicted",
-      premium: predictions.premium?.estimated_price || 0,
-      medium: predictions.medium?.estimated_price || 0,
-      low_quality: predictions.low_quality?.estimated_price || 0,
-    },
-  ];
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 },
+  };
 
   return (
-    <Card className="shadow-lg">
-      <CardHeader className="bg-gradient-to-r from-green-600 to-green-800 text-white rounded-t-lg">
-        <CardTitle className="text-xl">
-          Hasil Prediksi: {monthName} {year}
-        </CardTitle>
-      </CardHeader>
+    <motion.div variants={container} initial="hidden" animate="show">
+      <Card className="shadow-lg border-0 bg-gradient-to-br from-white to-blue-50">
+        <CardHeader className="bg-gradient-to-r from-indigo-600 to-blue-600 rounded-t-lg">
+          <CardTitle className="text-xl text-white">
+            Hasil Prediksi: {monthName} {year}
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="p-6">
+          <div className="mb-8">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="rounded-lg bg-white p-4 shadow-md mb-6"
+            >
+              <PriceChart
+                data={{
+                  premium: predictions.premium,
+                  medium: predictions.medium,
+                  low_quality: predictions.low_quality,
+                }}
+              />
+            </motion.div>
 
-      <CardContent className="pt-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          {Object.entries(predictions).map(([quality, prices]) => (
-            <PriceCard
-              key={quality}
-              quality={quality}
-              estimatedPrice={prices.estimated_price}
-              previousPrice={prices.previous_price}
-            />
-          ))}
-        </div>
-
-        <div className="mt-8">
-          <h3 className="text-lg font-semibold mb-3">Perbandingan Harga</h3>
-          <div className="h-[350px] border rounded-lg p-3">
-            <PriceChart data={chartData} />
+            <h3 className="text-lg font-semibold mb-3">Perbandingan Harga</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {Object.entries(predictions).map(([quality, data], index) => (
+                <motion.div key={quality} variants={item} className="h-full">
+                  <PriceCard
+                    quality={quality}
+                    estimatedPrice={data.estimated_price}
+                    previousPrice={data.previous_price}
+                  />
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </div>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
+    </motion.div>
   );
 };
 
