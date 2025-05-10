@@ -14,18 +14,17 @@ export async function POST(request) {
   }
 
   try {
-    // Remove trailing slash if present before adding /predict
-    const baseUrl = process.env.NEXT_PUBLIC_API_URL.endsWith("/")
-      ? process.env.NEXT_PUBLIC_API_URL.slice(0, -1)
-      : process.env.NEXT_PUBLIC_API_URL;
+    console.log(
+      `Sending request to: ${process.env.NEXT_PUBLIC_API_URL}/predict`
+    );
 
-    const url = `${baseUrl}/predict`;
-    console.log(`Sending request to: ${url}`);
-
-    const response = await axios.post(url, {
-      year,
-      month,
-    });
+    const response = await axios.post(
+      `${process.env.NEXT_PUBLIC_API_URL}/predict`,
+      {
+        year,
+        month,
+      }
+    );
 
     return NextResponse.json(response.data);
   } catch (error) {
