@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useState } from "react";
 import PredictionForm from "@/components/prediction-form";
 import PriceChart from "@/app/components/price-chart";
