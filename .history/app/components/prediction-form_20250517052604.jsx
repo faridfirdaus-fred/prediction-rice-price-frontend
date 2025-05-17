@@ -252,16 +252,16 @@ const PredictionForm = () => {
           menggunakan sistem prediksi berbasis data historis
         </motion.p>
 
+        {/* Two-column layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           {/* Left Column - Prediction Form */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col" // Diganti dari h-full agar konten bisa mengalir sesuai ukurannya
           >
-            <Card className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm rounded-2xl shadow-xl shadow-amber-100/20 dark:shadow-amber-900/5 border border-amber-100/50 dark:border-amber-700/20 overflow-hidden h-full py-0">
-              <CardHeader className="bg-gradient-to-r from-amber-500 to-yellow-500 dark:from-amber-600 dark:to-yellow-600 p-6 pb-6 pt-6">
+            <Card className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm rounded-2xl shadow-xl shadow-amber-100/20 dark:shadow-amber-900/5 border border-amber-100/50 dark:border-amber-700/20 overflow-hidden">
+              <CardHeader className="bg-gradient-to-r from-amber-500 to-yellow-500 dark:from-amber-600 dark:to-yellow-600 p-6">
                 <motion.div
                   initial={{ scale: 0.95 }}
                   animate={{ scale: 1 }}
@@ -375,7 +375,7 @@ const PredictionForm = () => {
                   </form>
                 </Form>
               </CardContent>
-              <CardFooter className="px-6 py-4 mt-auto bg-gradient-to-r from-amber-50 to-yellow-50/70 dark:from-amber-900/20 dark:to-yellow-900/10 border-t border-amber-100 dark:border-amber-700/30">
+              <CardFooter className="px-6 py-4 bg-gradient-to-r from-amber-50 to-yellow-50/70 dark:from-amber-900/20 dark:to-yellow-900/10 border-t border-amber-100 dark:border-amber-700/30">
                 <div className="text-xs text-amber-800/80 dark:text-amber-400/80 flex items-center">
                   <Info className="h-3.5 w-3.5 mr-1.5" />
                   Data prediksi diperbarui secara berkala menggunakan sumber BPS
@@ -459,8 +459,8 @@ const PredictionForm = () => {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="h-full"
           >
-            <Card className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm rounded-2xl shadow-xl border border-amber-100/50 dark:border-amber-700/20 overflow-hidden h-full py-0 flex flex-col">
-              <CardHeader className="bg-gradient-to-r from-yellow-500 to-amber-500 dark:from-yellow-600 dark:to-amber-600 p-5 pb-5 pt-5">
+            <Card className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm rounded-2xl shadow-xl border border-amber-100/50 dark:border-amber-700/20 overflow-hidden h-full">
+              <CardHeader className="bg-gradient-to-r from-yellow-500 to-amber-500 dark:from-yellow-600 dark:to-amber-600 p-5">
                 <CardTitle className="text-lg font-bold text-white flex items-center">
                   <span className="bg-white/20 p-2 rounded-lg mr-3 shadow-inner">
                     <svg
@@ -490,7 +490,7 @@ const PredictionForm = () => {
                 </CardDescription>
               </CardHeader>
 
-              <CardContent className="p-5 flex-grow overflow-auto">
+              <CardContent className="p-5">
                 {loading ? (
                   <LoadingDisplay />
                 ) : predictions && !error ? (

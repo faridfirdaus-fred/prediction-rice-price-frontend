@@ -258,7 +258,7 @@ const PredictionForm = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col" // Diganti dari h-full agar konten bisa mengalir sesuai ukurannya
+            className="h-full"
           >
             <Card className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm rounded-2xl shadow-xl shadow-amber-100/20 dark:shadow-amber-900/5 border border-amber-100/50 dark:border-amber-700/20 overflow-hidden h-full py-0">
               <CardHeader className="bg-gradient-to-r from-amber-500 to-yellow-500 dark:from-amber-600 dark:to-yellow-600 p-6 pb-6 pt-6">
@@ -454,43 +454,57 @@ const PredictionForm = () => {
 
           {/* Right Column - Results Display */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="h-full"
-          >
-            <Card className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm rounded-2xl shadow-xl border border-amber-100/50 dark:border-amber-700/20 overflow-hidden h-full py-0 flex flex-col">
-              <CardHeader className="bg-gradient-to-r from-yellow-500 to-amber-500 dark:from-yellow-600 dark:to-amber-600 p-5 pb-5 pt-5">
-                <CardTitle className="text-lg font-bold text-white flex items-center">
-                  <span className="bg-white/20 p-2 rounded-lg mr-3 shadow-inner">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="lucide lucide-line-chart"
-                    >
-                      <path d="M3 3v18h18"></path>
-                      <path d="m19 9-5 5-4-4-3 3"></path>
-                    </svg>
-                  </span>
-                  Hasil Prakiraan Harga
-                </CardTitle>
-                <CardDescription className="text-amber-50/90">
-                  {predictions
-                    ? `Data prakiraan harga beras untuk ${
-                        months[parseInt(form.getValues().month) - 1]
-                      } ${form.getValues().year}`
-                    : "Visualisasi hasil prediksi akan ditampilkan setelah memilih parameter"}
-                </CardDescription>
-              </CardHeader>
+    initial={{ opacity: 0, x: 20 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.5, delay: 0.4 }}
+    className="h-full"
+  >
+    <Card className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm rounded-2xl shadow-xl border border-amber-100/50 dark:border-amber-700/20 overflow-hidden h-full py-0 flex flex-col">
+      <CardHeader className="bg-gradient-to-r from-yellow-500 to-amber-500 dark:from-yellow-600 dark:to-amber-600 p-5 pb-5 pt-5">
+        <CardTitle className="text-lg font-bold text-white flex items-center">
+          <span className="bg-white/20 p-2 rounded-lg mr-3 shadow-inner">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="lucide lucide-line-chart"
+            >
+              <path d="M3 3v18h18"></path>
+              <path d="m19 9-5 5-4-4-3 3"></path>
+            </svg>
+          </span>
+          Hasil Prakiraan Harga
+        </CardTitle>
+        <CardDescription className="text-amber-50/90">
+          {predictions
+            ? `Data prakiraan harga beras untuk ${
+                months[parseInt(form.getValues().month) - 1]
+              } ${form.getValues().year}`
+            : "Visualisasi hasil prediksi akan ditampilkan setelah memilih parameter"}
+        </CardDescription>
+      </CardHeader>
 
-              <CardContent className="p-5 flex-grow overflow-auto">
+      <CardContent className="p-5 flex-grow overflow-auto">
+        {loading ? (
+          <LoadingDisplay />
+        ) : predictions && !error ? (
+          <PredictionResults
+            data={{ predictions, ...form.getValues() }}
+          />
+        ) : (
+          <NoDataDisplay />
+        )}
+      </CardContent>
+    </Card>
+  </motion.div>
+</div>
+              <CardContent className="p-5">
                 {loading ? (
                   <LoadingDisplay />
                 ) : predictions && !error ? (

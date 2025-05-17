@@ -103,8 +103,8 @@ const PredictionForm = () => {
         Belum Ada Prediksi
       </h3>
       <p className="text-gray-600 dark:text-gray-400 text-center max-w-xs">
-        Silakan pilih tahun dan bulan pada form untuk melihat prakiraan harga
-        beras terkini.
+        Pilih tahun dan bulan pada form di sebelah kiri untuk melihat prediksi
+        harga beras.
       </p>
     </div>
   );
@@ -117,7 +117,7 @@ const PredictionForm = () => {
         transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
       />
       <p className="text-gray-600 dark:text-gray-300 mt-6 font-medium">
-        Sedang memproses prediksi...
+        Memproses prediksi...
       </p>
     </div>
   );
@@ -230,38 +230,38 @@ const PredictionForm = () => {
         </div>
       </div>
 
-      <div className="container mt-6 mx-auto px-6 max-w-7xl relative z-10">
+      <div className="container mx-auto px-6 max-w-7xl relative z-10">
         <motion.h2
-          className="text-2xl md:text-3xl font-bold text-center mb-4"
+          className="text-4xl md:text-5xl font-bold text-center mb-4"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-600 to-yellow-600 dark:from-amber-400 dark:to-yellow-400">
-            Prediksi Harga Beras
+            Rice Price Predictor
           </span>
         </motion.h2>
 
         <motion.p
-          className="text-center text-gray-600 dark:text-gray-300 mb-4 max-w-3xl mx-auto"
+          className="text-center text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          Pilih tahun dan bulan untuk mendapatkan prakiraan harga beras akurat
-          menggunakan sistem prediksi berbasis data historis
+          Select a year and month to generate accurate rice price forecasts
+          using our advanced machine learning model
         </motion.p>
 
+        {/* Two-column layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           {/* Left Column - Prediction Form */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col" // Diganti dari h-full agar konten bisa mengalir sesuai ukurannya
           >
-            <Card className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm rounded-2xl shadow-xl shadow-amber-100/20 dark:shadow-amber-900/5 border border-amber-100/50 dark:border-amber-700/20 overflow-hidden h-full py-0">
-              <CardHeader className="bg-gradient-to-r from-amber-500 to-yellow-500 dark:from-amber-600 dark:to-yellow-600 p-6 pb-6 pt-6">
+            <Card className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 dark:shadow-slate-900/10 border border-slate-100/80 dark:border-slate-700/30 overflow-hidden">
+              <CardHeader className="bg-amber-500 dark:bg-amber-600 p-6">
                 <motion.div
                   initial={{ scale: 0.95 }}
                   animate={{ scale: 1 }}
@@ -271,10 +271,10 @@ const PredictionForm = () => {
                     <span className="bg-white/20 p-2 rounded-lg">
                       <LineChart className="h-6 w-6" />
                     </span>
-                    Form Prediksi
+                    Prediksi Harga Beras
                   </CardTitle>
                   <CardDescription className="text-amber-100 dark:text-amber-100 mt-2">
-                    Masukkan parameter waktu untuk memprediksi harga beras
+                    Masukkan tahun dan bulan untuk memprediksi harga beras
                   </CardDescription>
                 </motion.div>
               </CardHeader>
@@ -290,7 +290,7 @@ const PredictionForm = () => {
                         name="year"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="flex items-center gap-1 text-gray-700 dark:text-gray-300 font-medium">
+                            <FormLabel className="flex items-center gap-1 text-gray-700 dark:text-gray-300">
                               <Calendar className="h-4 w-4 text-amber-600 dark:text-amber-400" />{" "}
                               Tahun
                             </FormLabel>
@@ -299,11 +299,11 @@ const PredictionForm = () => {
                               defaultValue={field.value}
                             >
                               <FormControl>
-                                <SelectTrigger className="bg-white/70 dark:bg-slate-800/70 border-amber-200 dark:border-amber-700/30 focus:ring-amber-500/30 dark:focus:ring-amber-500/20 h-11">
+                                <SelectTrigger className="bg-white/70 dark:bg-slate-800/70 border-slate-200 dark:border-slate-700 focus:ring-amber-500/30 dark:focus:ring-amber-500/20">
                                   <SelectValue placeholder="Pilih tahun" />
                                 </SelectTrigger>
                               </FormControl>
-                              <SelectContent className="max-h-[300px] bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm border-amber-200/50 dark:border-amber-800/30">
+                              <SelectContent className="max-h-[300px] bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm">
                                 {yearOptions.map((year) => (
                                   <SelectItem
                                     key={year}
@@ -323,7 +323,7 @@ const PredictionForm = () => {
                         name="month"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="flex items-center gap-1 text-gray-700 dark:text-gray-300 font-medium">
+                            <FormLabel className="flex items-center gap-1 text-gray-700 dark:text-gray-300">
                               <Calendar className="h-4 w-4 text-amber-600 dark:text-amber-400" />{" "}
                               Bulan
                             </FormLabel>
@@ -332,11 +332,11 @@ const PredictionForm = () => {
                               defaultValue={field.value}
                             >
                               <FormControl>
-                                <SelectTrigger className="bg-white/70 dark:bg-slate-800/70 border-amber-200 dark:border-amber-700/30 focus:ring-amber-500/30 dark:focus:ring-amber-500/20 h-11">
+                                <SelectTrigger className="bg-white/70 dark:bg-slate-800/70 border-slate-200 dark:border-slate-700 focus:ring-amber-500/30 dark:focus:ring-amber-500/20">
                                   <SelectValue placeholder="Pilih bulan" />
                                 </SelectTrigger>
                               </FormControl>
-                              <SelectContent className="bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm border-amber-200/50 dark:border-amber-800/30">
+                              <SelectContent className="bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm">
                                 {months.map((month, index) => (
                                   <SelectItem
                                     key={index + 1}
@@ -355,31 +355,29 @@ const PredictionForm = () => {
                     <motion.div
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="mt-4"
                     >
                       <Button
                         type="submit"
-                        className="w-full font-medium text-base bg-gradient-to-r from-amber-600 to-yellow-500 hover:from-amber-700 hover:to-yellow-600 dark:from-amber-500 dark:to-yellow-400 dark:hover:from-amber-600 dark:hover:to-yellow-500 text-white border-0 shadow-lg shadow-amber-500/20 dark:shadow-amber-400/10 h-12 rounded-xl"
+                        className="w-full font-medium bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-700 hover:to-yellow-700 dark:from-amber-600 dark:to-yellow-600 dark:hover:from-amber-500 dark:hover:to-yellow-500 text-white border-0 shadow-md shadow-amber-500/20 dark:shadow-amber-400/10"
                         disabled={loading}
                       >
                         {loading ? (
                           <>
-                            <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                            Memproses Prediksi...
+                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            Memproses...
                           </>
                         ) : (
-                          "Mulai Prediksi Harga"
+                          "Prediksi Harga"
                         )}
                       </Button>
                     </motion.div>
                   </form>
                 </Form>
               </CardContent>
-              <CardFooter className="px-6 py-4 mt-auto bg-gradient-to-r from-amber-50 to-yellow-50/70 dark:from-amber-900/20 dark:to-yellow-900/10 border-t border-amber-100 dark:border-amber-700/30">
-                <div className="text-xs text-amber-800/80 dark:text-amber-400/80 flex items-center">
-                  <Info className="h-3.5 w-3.5 mr-1.5" />
-                  Data prediksi diperbarui secara berkala menggunakan sumber BPS
-                  terbaru
+              <CardFooter className="px-6 py-4 bg-amber-50/80 dark:bg-amber-900/20 border-t border-amber-100 dark:border-amber-700/50">
+                <div className="text-xs text-amber-800/70 dark:text-amber-400/70 flex items-center">
+                  <Info className="h-3 w-3 mr-1" />
+                  Prediksi diperbarui berdasarkan data historis terbaru
                 </div>
               </CardFooter>
             </Card>
@@ -389,12 +387,12 @@ const PredictionForm = () => {
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mt-4 p-4 bg-red-50/90 dark:bg-red-900/20 backdrop-blur-sm border border-red-200/80 dark:border-red-700/30 text-red-700 dark:text-red-300 rounded-lg shadow-sm"
+                className="mt-4 p-4 bg-red-50/80 dark:bg-red-900/20 backdrop-blur-sm border border-red-200/50 dark:border-red-700/30 text-red-700 dark:text-red-300 rounded-lg"
               >
                 <p className="flex items-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 mr-2"
+                    className="h-4 w-4 mr-2"
                     viewBox="0 0 20 20"
                     fill="currentColor"
                   >
@@ -404,7 +402,7 @@ const PredictionForm = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  Terjadi kesalahan: {error}
+                  Error: {error}
                 </p>
               </motion.div>
             )}
@@ -418,11 +416,11 @@ const PredictionForm = () => {
             >
               <Card className="bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-amber-900/20 dark:to-yellow-900/20 border-0 shadow-md">
                 <CardContent className="p-4 flex items-start">
-                  <div className="bg-gradient-to-br from-amber-100 to-yellow-100 dark:from-amber-800/30 dark:to-yellow-800/20 p-2.5 rounded-full mr-3.5 mt-1 shadow-inner">
+                  <div className="bg-amber-100 dark:bg-amber-800/30 p-2 rounded-full mr-3 mt-1">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      width="17"
-                      height="17"
+                      width="16"
+                      height="16"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
@@ -437,10 +435,10 @@ const PredictionForm = () => {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="text-sm font-semibold text-amber-800 dark:text-amber-300">
-                      Tentang Sistem Prediksi
+                    <h4 className="text-sm font-medium text-amber-800 dark:text-amber-300">
+                      Tentang Prediksi
                     </h4>
-                    <p className="text-xs leading-relaxed text-gray-600 dark:text-gray-400 mt-1.5">
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
                       Model prediksi harga beras ini menggunakan interpolasi
                       polinomial cubis spline untuk penghalusan data dan regresi
                       polinomial untuk memprediksi data menggunakan data dari
@@ -459,10 +457,10 @@ const PredictionForm = () => {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="h-full"
           >
-            <Card className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm rounded-2xl shadow-xl border border-amber-100/50 dark:border-amber-700/20 overflow-hidden h-full py-0 flex flex-col">
-              <CardHeader className="bg-gradient-to-r from-yellow-500 to-amber-500 dark:from-yellow-600 dark:to-amber-600 p-5 pb-5 pt-5">
+            <Card className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm rounded-2xl shadow-lg border border-slate-100/80 dark:border-slate-700/30 overflow-hidden h-full">
+              <CardHeader className="bg-amber-500 dark:bg-amber-600 p-5">
                 <CardTitle className="text-lg font-bold text-white flex items-center">
-                  <span className="bg-white/20 p-2 rounded-lg mr-3 shadow-inner">
+                  <span className="bg-white/20 p-2 rounded-lg mr-3">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="18"
@@ -479,18 +477,18 @@ const PredictionForm = () => {
                       <path d="m19 9-5 5-4-4-3 3"></path>
                     </svg>
                   </span>
-                  Hasil Prakiraan Harga
+                  Hasil Prediksi
                 </CardTitle>
-                <CardDescription className="text-amber-50/90">
+                <CardDescription className="text-amber-100">
                   {predictions
-                    ? `Data prakiraan harga beras untuk ${
+                    ? `Prediksi harga untuk ${
                         months[parseInt(form.getValues().month) - 1]
                       } ${form.getValues().year}`
-                    : "Visualisasi hasil prediksi akan ditampilkan setelah memilih parameter"}
+                    : "Visualisasi hasil prediksi akan muncul di sini"}
                 </CardDescription>
               </CardHeader>
 
-              <CardContent className="p-5 flex-grow overflow-auto">
+              <CardContent className="p-5">
                 {loading ? (
                   <LoadingDisplay />
                 ) : predictions && !error ? (

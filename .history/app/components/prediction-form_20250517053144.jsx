@@ -258,7 +258,7 @@ const PredictionForm = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col" // Diganti dari h-full agar konten bisa mengalir sesuai ukurannya
+            className="h-full"
           >
             <Card className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm rounded-2xl shadow-xl shadow-amber-100/20 dark:shadow-amber-900/5 border border-amber-100/50 dark:border-amber-700/20 overflow-hidden h-full py-0">
               <CardHeader className="bg-gradient-to-r from-amber-500 to-yellow-500 dark:from-amber-600 dark:to-yellow-600 p-6 pb-6 pt-6">

@@ -160,9 +160,9 @@ const Navbar = () => {
             <div className="hidden md:flex items-center space-x-4">
               <NavLink href="/" label="Beranda" />
               <NavLink href="/documentation" label="Dokumentasi" />
-              <NavLink href="/methodology" label="Metodologi" />
+              <NavLink href="/methodology" label="Met" />
 
-              {/* Dark Mode Toggle - Desktop */}
+              {/* Dark Mode Toggle */}
               <motion.button
                 whileTap={{ scale: 0.9 }}
                 onClick={toggleDarkMode}
@@ -184,9 +184,9 @@ const Navbar = () => {
                     transition={{ duration: 0.2 }}
                   >
                     {darkMode ? (
-                      <Moon className="h-5 w-5" />
-                    ) : (
                       <Sun className="h-5 w-5" />
+                    ) : (
+                      <Moon className="h-5 w-5" />
                     )}
                   </motion.div>
                 </AnimatePresence>
