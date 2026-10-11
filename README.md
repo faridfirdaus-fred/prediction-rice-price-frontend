@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Rice Price Prediction Frontend
 
-## Getting Started
+Web frontend for a rice price prediction service. It collects a target year and month from the user, calls the prediction API, and visualizes the result.
 
-First, run the development server:
+The backend lives in [rice-price-interpolation-backend](https://github.com/faridfirdaus-fred/rice-price-interpolation-backend).
+
+## Features
+
+- **Prediction form** for a target year and month
+- **Chart visualization** of predicted and historical prices
+- **Historical data view** for dates up to December 2023
+- **Responsive UI** built with Tailwind CSS and shadcn/ui components
+
+## Tech stack
+
+| Layer | Choice |
+| --- | --- |
+| Framework | Next.js 15 (App Router) |
+| UI components | shadcn/ui, Radix UI |
+| Styling | Tailwind CSS v4 |
+| Charts | Recharts |
+| Forms | React Hook Form + Zod |
+| HTTP client | Axios |
+
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Environment variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create `.env.local`:
 
-## Learn More
+| Variable | Purpose |
+| --- | --- |
+| `NEXT_PUBLIC_API_URL` | Base URL of the prediction backend |
 
-To learn more about Next.js, take a look at the following resources:
+### Scripts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the dev server |
+| `npm run build` | Production build |
+| `npm run start` | Serve the production build |
+| `npm run lint` | Run ESLint |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project structure
 
-## Deploy on Vercel
+```
+app/             # Pages and route handlers
+components/      # UI components
+components/ui/   # shadcn/ui primitives
+lib/             # Helpers and API client
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Deployable to Vercel. Set `NEXT_PUBLIC_API_URL` to the deployed backend URL.
